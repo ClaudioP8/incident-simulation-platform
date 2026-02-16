@@ -1,0 +1,59 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "TerraformStateBucketReadList",
+            "Effect": "Allow",
+            "Action": [
+                "s3:Get*",
+                "s3:List*"
+            ],
+            "Resource": [
+                "arn:aws:s3:::prod-incident-terraform-state-250205157846",
+                "arn:aws:s3:::prod-incident-terraform-state-250205157846/*"
+            ]
+        },
+        {
+            "Sid": "TerraformStateBucketWriteStateOnly",
+            "Effect": "Allow",
+            "Action": [
+                "s3:PutObject"
+            ],
+            "Resource": "arn:aws:s3:::prod-incident-terraform-state-250205157846/*"
+        },
+        {
+            "Sid": "CloudTrailLogsBucketReadList",
+            "Effect": "Allow",
+            "Action": [
+                "s3:Get*",
+                "s3:List*"
+            ],
+            "Resource": [
+                "arn:aws:s3:::prod-incident-cloudtrail-logs-250205157846",
+                "arn:aws:s3:::prod-incident-cloudtrail-logs-250205157846/*"
+            ]
+        },
+        {
+            "Sid": "CloudTrailRead",
+            "Effect": "Allow",
+            "Action": [
+                "cloudtrail:Get*",
+                "cloudtrail:Describe*",
+                "cloudtrail:ListTags"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "TerraformLockTable",
+            "Effect": "Allow",
+            "Action": [
+                "dynamodb:Get*",
+                "dynamodb:Describe*",
+                "dynamodb:ListTagsOfResource",
+                "dynamodb:PutItem",
+                "dynamodb:DeleteItem"
+            ],
+            "Resource": "arn:aws:dynamodb:us-east-1:250205157846:table/terraform-locks"
+        }
+    ]
+}
