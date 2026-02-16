@@ -32,6 +32,14 @@ The goal is to model how infrastructure is managed in real production environmen
 
 ---
 
+## Identity Architecture
+
+- terraform-bootstrap (execution identity)
+- AdminRole (control plane)
+- TerraformDeployRole (provisioning role)
+
+---
+
 ## Security Model
 
 - No persistent administrative credentials  

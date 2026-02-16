@@ -1,0 +1,58 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "S3BackendAccess",
+            "Effect": "Allow",
+            "Action": [
+                "s3:Get*",
+                "s3:List*",
+                "s3:GetBucketVersioning",
+                "s3:GetBucketPolicy",
+                "s3:GetEncryptionConfiguration",
+                "s3:PutObject",
+                "s3:DeleteObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::prod-incident-terraform-state-250205157846",
+                "arn:aws:s3:::prod-incident-terraform-state-250205157846/*",
+                "arn:aws:s3:::prod-incident-cloudtrail-logs-250205157846",
+                "arn:aws:s3:::prod-incident-cloudtrail-logs-250205157846/*"
+            ]
+        },
+        {
+            "Sid": "DynamoDBLockTableAccess",
+            "Effect": "Allow",
+            "Action": [
+                "dynamodb:Get*",
+                "dynamodb:Describe*",
+                "dynamodb:PutItem",
+                "dynamodb:DeleteItem",
+                "dynamodb:ListTagsOfResource"
+            ],
+            "Resource": "arn:aws:dynamodb:us-east-1:250205157846:table/terraform-locks"
+        },
+        {
+            "Sid": "CloudTrailManagement",
+            "Effect": "Allow",
+            "Action": [
+                "cloudtrail:Get*",
+                "cloudtrail:Describe*",
+                "cloudtrail:List*",
+                "cloudtrail:CreateTrail",
+                "cloudtrail:UpdateTrail",
+                "cloudtrail:StartLogging",
+                "cloudtrail:StopLogging"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "IdentityInspection",
+            "Effect": "Allow",
+            "Action": [
+                "sts:GetCallerIdentity"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
