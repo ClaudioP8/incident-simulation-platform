@@ -4,7 +4,10 @@
         {
             "Effect": "Allow",
             "Principal": {
-                "AWS": "arn:aws:iam::250205157846:user/terraform-bootstrap"
+                "AWS": [
+                    "arn:aws:iam::250205157846:user/terraform-bootstrap",
+                    "arn:aws:iam::250205157846:user/terraform-runner"
+                ]
             },
             "Action": "sts:AssumeRole"
         }
